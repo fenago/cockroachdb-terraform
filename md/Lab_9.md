@@ -46,3 +46,25 @@ duration of the restore. All current data is deleted, and the cluster
 will be restored to the state it was in at the time of the backup. There
 are no automatic incremental backups, and no automatic database or table
 level backups.
+
+
+## Delete cluster
+
+Warning: Deleting a cluster will delete all cluster data.
+
+
+Note: Free CockroachDB Serverless clusters are subject to deletion after 6
+months of no activity.
+
+
+Proceed with the following steps only if you are sure you want to delete
+a cluster:
+
+1.  Navigate to the **Overview** page for the cluster you want to
+    delete.
+2.  Click the **Actions** button in the top right corner.
+3.  Select **Delete cluster**.
+4.  In the confirmation window, enter the name of the cluster.
+5.  Click **Delete**.
+
+

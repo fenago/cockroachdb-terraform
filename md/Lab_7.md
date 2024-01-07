@@ -46,26 +46,25 @@ This section shows how to start a cluster interactively.
     to stop the node.
 
 
-    You\'ll see a message like the following:
-
-    
-    ```
-    *
-    * WARNING: RUNNING IN INSECURE MODE!
-    *
-    * - Your cluster is open for any client that can access localhost.
-    * - Any user, even root, can log in without providing a password.
-    * - Any user, connecting as root, can read or write any data in your cluster.
-    * - There is no network encryption nor authentication, and thus no confidentiality.
-    *
-    *
-    *
-    * INFO: initial startup completed.
-    * Node will now attempt to join a running cluster, or wait for `cockroach init`.
-    * Client connections will be accepted after this completes successfully.
-    * Check the log file(s) for progress.
-    *
-    ```
+You\'ll see a message like the following:
+ 
+```
+*
+* WARNING: RUNNING IN INSECURE MODE!
+*
+* - Your cluster is open for any client that can access localhost.
+* - Any user, even root, can log in without providing a password.
+* - Any user, connecting as root, can read or write any data in your cluster.
+* - There is no network encryption nor authentication, and thus no confidentiality.
+*
+*
+*
+* INFO: initial startup completed.
+* Node will now attempt to join a running cluster, or wait for `cockroach init`.
+* Client connections will be accepted after this completes successfully.
+* Check the log file(s) for progress.
+*
+```
     
 
 2.  Take a moment to understand the

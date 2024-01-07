@@ -54,48 +54,46 @@ with Alpine as the notable exception.
 
 3.  Verify that CockroachDB can execute spatial queries.
 
-    1.  Make sure the `cockroach` binary you just installed is the one
-        that runs when you type `cockroach` in your shell:
+- Make sure the `cockroach` binary you just installed is the one
+    that runs when you type `cockroach` in your shell:
 
 
-        ```
-        which cockroach
-        ```
+```
+which cockroach
+```
 
-        ```
-        /usr/local/bin/cockroach
-        ```
+```
+/usr/local/bin/cockroach
+```
 
-    2.  Start a temporary, in-memory cluster using `cockroach demo`:
-
-
-        ```
-        cockroach demo
-        ```
-
-    3.  In the demo cluster\'s interactive SQL shell, run the following
-        command to test that the spatial libraries have loaded properly:
+- Start a temporary, in-memory cluster using `cockroach demo`:
 
 
+```
+cockroach demo
+```
 
-        ```
-        SELECT ST_IsValid(ST_MakePoint(1,2));
-        ```
+- In the demo cluster\'s interactive SQL shell, run the following command to test that the spatial libraries have loaded properly:
 
-        You should see the following output:
 
-        ```
-          st_isvalid
-        --------------
-        true
-        (1 row)
-        ```
+```
+SELECT ST_IsValid(ST_MakePoint(1,2));
+```
 
-        If your `cockroach` binary is not properly accessing the
-        dynamically linked C libraries in `/usr/local/lib/cockroach`, it
-        will output an error message like the one below.
+You should see the following output:
 
-        ```
-        ERROR: st_isvalid(): geos: error during GEOS init: geos: cannot load GEOS from dir "/usr/local/lib/cockroach": failed to execute dlopen
-                  Failed running "sql"
-        ```
+```
+    st_isvalid
+--------------
+true
+(1 row)
+```
+
+If your `cockroach` binary is not properly accessing the
+dynamically linked C libraries in `/usr/local/lib/cockroach`, it
+will output an error message like the one below.
+
+```
+ERROR: st_isvalid(): geos: error during GEOS init: geos: cannot load GEOS from dir "/usr/local/lib/cockroach": failed to execute dlopen
+            Failed running "sql"
+```

@@ -1,5 +1,5 @@
 
-# Lab: Basic Operations in CockroachDB 
+# Lab 4: Basic Operations in CockroachDB 
 
 This lab guides you through some of the most essential CockroachDB
 SQL statements using an interactive SQL shell connected to a temporary,
