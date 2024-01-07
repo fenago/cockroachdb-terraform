@@ -6,7 +6,7 @@ In this lab, we will look intro backup and restore operation.
 - Backups tab
 - Restore a cluster
 
-**Note:** If your cluster was created few minutes ago, you will not see any automated backups.
+**Note:** If your CockroachDB cluster was created few minutes ago, you will not see any automated backups.
 
 To access your managed-service backups, select a cluster from the
 **Clusters** page,

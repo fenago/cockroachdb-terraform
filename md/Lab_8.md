@@ -4,11 +4,9 @@
 - Step 1. Generate certificates
 - Step 2. Start the cluster
 - Step 3. Use the built-in SQL client
-- Step 4. Run a sample workload
-- Step 5. Access the DB Console
-- Step 6. Simulate node maintenance
-- Step 7. Scale the cluster
-- Step 8. Stop the cluster
+- Step 4. Access the DB Console
+- Step 5. Simulate node maintenance
+- Step 6. Stop the cluster
 
 
 ## Before you begin
@@ -25,11 +23,7 @@ certificates to encrypt network communication.
 ## Step 1. Generate certificates
 
 You can use either
-`cockroach cert`
-commands or `openssl`
-commands]
-to generate security certificates. This section features the
-`cockroach cert` commands.
+`cockroach cert` commands to generate security certificates. This section features the `cockroach cert` commands.
 
 1.  Create two directories:
 
@@ -328,44 +322,7 @@ test this out, let\'s use CockroachDB\'s built-in SQL client.
     ```
     
 
-## Step 4. Run a sample workload
-
-CockroachDB also comes with a number of [built-in
-workloads]
-for simulating client traffic. Let\'s run the workload based on
-CockroachDB\'s sample vehicle-sharing application,
-[MovR].
-
-1.  Load the initial dataset:
-
-    
-    ```
-    cockroach workload init movr \
-    'postgresql://root@localhost:26257?sslcert=certs%2Fclient.root.crt&sslkey=certs%2Fclient.root.key&sslmode=verify-full&sslrootcert=certs%2Fca.crt'
-    ```
-    
-
-    
-    ```
-    I190926 16:50:35.663708 1 workload/workloadsql/dataload.go:135  imported users (0s, 50 rows)
-    I190926 16:50:35.682583 1 workload/workloadsql/dataload.go:135  imported vehicles (0s, 15 rows)
-    I190926 16:50:35.769572 1 workload/workloadsql/dataload.go:135  imported rides (0s, 500 rows)
-    I190926 16:50:35.836619 1 workload/workloadsql/dataload.go:135  imported vehicle_location_histories (0s, 1000 rows)
-    I190926 16:50:35.915498 1 workload/workloadsql/dataload.go:135  imported promo_codes (0s, 1000 rows)
-    ```
-    
-
-2.  Run the workload for 5 minutes:
-
-    
-    ```
-    cockroach workload run movr \
-    --duration=5m \
-    'postgresql://root@localhost:26257?sslcert=certs%2Fclient.root.crt&sslkey=certs%2Fclient.root.key&sslmode=verify-full&sslrootcert=certs%2Fca.crt'
-    ```
-    
-
-## Step 5. Access the DB Console
+## Step 4. Access the DB Console
 
 The CockroachDB [DB
 Console] gives you
@@ -439,12 +396,9 @@ performance of the client workload.
     
     
     Note:
-    
 
     Capacity metrics can be incorrect when running multiple nodes on a
-    single machine. For more details, see this
-    [limitation].
-    
+    single machine.
 
 7.  Click
     **Metrics**
@@ -458,7 +412,8 @@ performance of the client workload.
     performance of specific queries, and to monitor the status of
     long-running operations like schema changes, respectively.
 
-## Step 6. Simulate node maintenance
+
+## Step 5. Simulate node maintenance
 
 1.  In a new terminal, gracefully shut down a node. This is normally
     done prior to node maintenance:
@@ -483,7 +438,7 @@ performance of the client workload.
 
     
     ```
-    kill -TERM 4503
+    kill -TERM UPDATE_HERE
     ```
     
 
@@ -505,50 +460,7 @@ performance of the client workload.
     ```
     
 
-## Step 7. Scale the cluster
-
-Adding capacity is as simple as starting more nodes with
-`cockroach start`.
-
-1.  In separate terminal windows, start 2 more nodes:
-
-    
-    ```
-    cockroach start \
-    --certs-dir=certs \
-    --store=node4 \
-    --listen-addr=localhost:26260 \
-    --http-addr=localhost:8083 \
-    --join=localhost:26257,localhost:26258,localhost:26259
-    ```
-    
-
-    
-    ```
-    cockroach start \
-    --certs-dir=certs \
-    --store=node5 \
-    --listen-addr=localhost:26261 \
-    --http-addr=localhost:8084 \
-    --join=localhost:26257,localhost:26258,localhost:26259
-    ```
-    
-
-    Again, these commands are the same as before but with unique
-    `--store`, `--listen-addr`, and `--http-addr` flags.
-
-2.  Back on the **Cluster Overview** in the DB Console, you\'ll now see
-    5 nodes listed:
-
-    ![](./images/ui_cluster_overview_5_nodes.png)
-
-    At first, the replica count will be lower for nodes 4 and 5. Very
-    soon, however, you\'ll see those numbers even out across all nodes,
-    indicating that data is being [automatically
-    rebalanced]
-    to utilize the additional capacity of the new nodes.
-
-## Step 8. Stop the cluster
+## Step 6. Stop the cluster
 
 1.  When you\'re done with your test cluster, stop the nodes.
 
@@ -565,8 +477,6 @@ Adding capacity is as simple as starting more nodes with
       501  4482     1   0  2:41PM ttys000    0:09.78 cockroach start --certs-dir=certs --store=node1 --listen-addr=localhost:26257 --http-addr=localhost:8080 --join=localhost:26257,localhost:26258,localhost:26259
       501  4497     1   0  2:41PM ttys000    0:08.54 cockroach start --certs-dir=certs --store=node2 --listen-addr=localhost:26258 --http-addr=localhost:8081 --join=localhost:26257,localhost:26258,localhost:26259
       501  4503     1   0  2:41PM ttys000    0:08.54 cockroach start --certs-dir=certs --store=node3 --listen-addr=localhost:26259 --http-addr=localhost:8082 --join=localhost:26257,localhost:26258,localhost:26259
-      501  4510     1   0  2:42PM ttys000    0:08.46 cockroach start --certs-dir=certs --store=node4 --listen-addr=localhost:26260 --http-addr=localhost:8083 --join=localhost:26257,localhost:26258,localhost:26259
-      501  4622     1   0  2:43PM ttys000    0:02.51 cockroach start --certs-dir=certs --store=node5 --listen-addr=localhost:26261 --http-addr=localhost:8084 --join=localhost:26257,localhost:26258,localhost:26259
     ```
     
 
@@ -574,54 +484,27 @@ Adding capacity is as simple as starting more nodes with
 
     
     ```
-    kill -TERM 4482
+    kill -TERM UPDATE_PROCESSID_NODE1
     ```
     
 
     
     ```
-    kill -TERM 4497
+    kill -TERM UPDATE_PROCESSID_NODE2
     ```
     
 
     
     ```
-    kill -TERM 4503
+    kill -TERM UPDATE_PROCESSID_NODE3
     ```
     
 
-    
-    
-    Note:
-    
-
-    For `node4` and `node5`, the shutdown process will take longer
-    (about a minute each) and will eventually force the nodes to stop.
-    Because only two of the five nodes are now running, the cluster has
-    lost quorum and is no longer operational.
-    
-
-    
-    ```
-    kill -TERM 4510
-    ```
-    
-
-    
-    ```
-    kill -TERM 4622
-    ```
-    
-
-2.  To restart the cluster at a later time, run the same
-    `cockroach start` commands as earlier from the directory containing
-    the nodes\' data stores.
-
-3.  If you do not plan to restart the cluster, you may want to remove
+2.  If you do not plan to restart the cluster, you may want to remove
     the nodes\' data stores and the certificate directories:
 
     
     ```
-    rm -rf node1 node2 node3 node4 node5 certs my-safe-directory
+    rm -rf node1 node2 node3 certs my-safe-directory
     ```
    

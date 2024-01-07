@@ -242,20 +242,11 @@ empty body:
 ### Raw status endpoints
 
 
-
-Note:
-
-
-These endpoints are deprecated in favor of the [Cluster
-API].
-
-
 Several endpoints return raw status metrics in JSON at
 `http://<host>:<http-port>/#/debug`. Feel free to investigate and use
 these endpoints, but note that they are subject to change.
 
-![Raw Status
-Endpoints](./images/raw-status-endpoints.png)
+![](./images/raw-status-endpoints.png)
 
 ### Node status command
 
