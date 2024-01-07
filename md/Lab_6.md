@@ -1,5 +1,5 @@
 
-# Lab: Modifying the Terraform script to update the CockroachDB deployment
+# Lab 6: Modifying the Terraform script to update the CockroachDB deployment
 
 This lab shows you how to modify the Terraform script to update the CockroachDB deployment
 using the CockroachDB Cloud Terraform provider.

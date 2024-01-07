@@ -1,4 +1,4 @@
-# Deploy a Local Cluster from Binary (Insecure)
+# Lab 7: Deploy a Local Cluster from Binary (Insecure)
 
 
 

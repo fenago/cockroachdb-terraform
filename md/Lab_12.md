@@ -150,7 +150,6 @@ variable `DATABASE_URL` to connect to your cluster.
 
 ## Delete cluster
 
-
 Warning: Deleting a cluster will delete all cluster data.
 
 

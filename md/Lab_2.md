@@ -1,6 +1,5 @@
 
-# Lab 2: Install Terraform
-
+# Lab 2: Getting Started with Terraform 
 
 Retrieve the `terraform` binary by downloading a pre-compiled binary or compiling it from source.
 

@@ -1,4 +1,4 @@
-# Install CockroachDB on Linux 
+# Lab 1: Introduction to Distributed Databases 
 
 
 ## Download the binary

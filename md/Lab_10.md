@@ -1,5 +1,5 @@
 
-# Fault Tolerance & Recovery
+# Lab 10: Fault Tolerance & Recovery
 
 
 - Before you begin

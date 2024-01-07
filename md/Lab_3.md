@@ -1,5 +1,5 @@
 
-# Provision a CockroachDB Cloud Cluster with Terraform
+# Lab 3: Initial Deployment of CockroachDB with Terraform
 
 
 Terraform is an infrastructure-as-code

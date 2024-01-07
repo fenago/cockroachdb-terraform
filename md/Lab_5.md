@@ -1,5 +1,5 @@
 
-# Manage a CockroachDB Serverless Cluster
+# Lab 5: Introduction to CockroachDB Clusters 
 
 In this lab, we will look into the cluster management for CockroachDB Serverless.
 

@@ -1,10 +1,12 @@
 
-# Use Managed-Service Backups
+# Lab 9: Performing a backup and restore operation
+
+In this lab, we will look intro backup and restore operation.
 
 - Backups tab
 - Restore a cluster
 
-
+**Note:** If your cluster was created few minutes ago, you will not see any automated backups.
 
 To access your managed-service backups, select a cluster from the
 **Clusters** page,
@@ -21,11 +23,7 @@ The full backups are
 retained for 30 days. Once a cluster is deleted, Cockroach Labs retains
 the full backups for 30 days.
 
-
-
-
 ## Backups tab
-
 
 The **Backups** tab displays a list of your full cluster backups. Use
 the calendar drop-down to view all backups taken on a certain date.

@@ -1,5 +1,5 @@
 
-# Deploy a Local Cluster from Binary (Secure)
+# Lab 8: Securing your CockroachDB instance
 
 - Step 1. Generate certificates
 - Step 2. Start the cluster
