@@ -6,8 +6,6 @@ SQL statements using an interactive SQL shell connected to a temporary,
 single-node CockroachDB cluster.
 
 
-
-
 ## Start CockroachDB
 
 Run the `cockroach demo` command:
@@ -511,19 +509,10 @@ delete:
 
 
 
-
-
-
-
 ```
 DELETE FROM promo_codes WHERE description = 'EXPIRED';
 ```
 
-
-
-```
-DELETE 669
-```
 
 
 Just as with the `UPDATE` statement, if a table has a primary key, you
@@ -538,11 +527,13 @@ When you no longer need a table, use
 followed by the table name to remove the table and all its data:
 
 
-
-
-
-
-
 ```
 DROP TABLE drivers;
+```
+
+
+You can exit the CockroachDB shell now.
+
+```
+exit
 ```

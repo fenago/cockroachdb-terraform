@@ -18,6 +18,9 @@ In this lab, we will look into the cluster management for CockroachDB Serverless
 On `logging in to the CockroachDB Cloud Console`, the **Clusters** page is displayed. The **Clusters**
 page provides a high-level view of your clusters.
 
+**CockroachDB Cloud Console**: `https://cockroachlabs.cloud/clusters`
+
+
 For each cluster, the following details display:
 
 - The cluster\'s **Name**

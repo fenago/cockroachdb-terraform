@@ -10,7 +10,7 @@ using the CockroachDB Cloud Terraform provider.
 Before you start this lab, make sure you have created the cluster in Lab 3.
 
 
-## Create the Terraform configuration files
+## Update the Terraform configuration files
 
 Terraform uses a infrastructure-as-code approach to managing resources.
 Terraform configuration files allow you to define resources
@@ -19,8 +19,7 @@ declaratively and let Terraform manage their lifecycle.
 
 In this lab, you will update a CockroachDB Serverless cluster.
 
-2.  In a text editor update file `terraform.tfvars` created ion lab3 with the
-    following settings:
+2.  In a text editor, update the `terraform.tfvars` file created ion lab3 with the following settings:
 
     
     ```
@@ -81,7 +80,7 @@ In this lab, you will update a CockroachDB Serverless cluster.
     ```
     
 
-    Enter `yes` when prompted to apply the plan and create the cluster.
+    Enter `yes` when prompted to apply the plan and uodate the cluster.
 
 
 ## Get information about your cluster
@@ -102,26 +101,42 @@ This will show the following output:
 # cockroach_cluster.example:
 resource "cockroach_cluster" "example" {
     cloud_provider    = "GCP"
-    cockroach_version = "v22.1"
-    creator_id        = "98e75f0a-072b-44dc-95d2-cc36cd425cab"
-    id                = "1aaae1f8-19e2-4653-ba62-db16de2a84b9"
+    cockroach_version = "v23.1"
+    creator_id        = "a907013c-a5e2-40fc-b120-775bf0a9289e"
+    id                = "60f9e362-ee83-4cbd-ab14-10535797e06d"
     name              = "blue-dog"
-    operation_status  = "CLUSTER_STATUS_UNSPECIFIED"
+    operation_status  = "UNSPECIFIED"
     plan              = "SERVERLESS"
     regions           = [
-        # (1 unchanged element hidden)
+        {
+            internal_dns = ""
+            name         = "us-central1"
+            node_count   = 0
+            primary      = true
+            sql_dns      = "blue-dog-13786.5xj.gcp-us-central1.cockroachlabs.cloud"
+            ui_dns       = ""
+        },
     ]
     serverless        = {
-        routing_id  = "blue-dog-6821"
+        routing_id  = "blue-dog-13786"
         spend_limit = 0
     }
     state             = "CREATED"
+    upgrade_status    = "FINALIZED"
+}
+
+# cockroach_database.example:
+resource "cockroach_database" "example" {
+    cluster_id  = "60f9e362-ee83-4cbd-ab14-10535797e06d"
+    id          = "60f9e362-ee83-4cbd-ab14-10535797e06d:example-database"
+    name        = "example-database"
+    table_count = 0
 }
 
 # cockroach_sql_user.example:
 resource "cockroach_sql_user" "example" {
-    cluster_id = "1aaae1f8-19e2-4653-ba62-db16de2a84b9"
-    id         = "1aaae1f8-19e2-4653-ba62-db16de2a84b9:maxroach"
+    cluster_id = "60f9e362-ee83-4cbd-ab14-10535797e06d"
+    id         = "60f9e362-ee83-4cbd-ab14-10535797e06d:maxroach2"
     name       = "maxroach2"
     password   = (sensitive value)
 }
@@ -129,12 +144,26 @@ resource "cockroach_sql_user" "example" {
 
 
 
-**Note:** You can delete the cluster by running `terraform destroy` command but you will be using cluster in upcoming labs so don't delete it yet.
+**Note:** You can delete the cluster by running `terraform destroy` command but you will be using cluster in upcoming labs so **don't** delete it yet.
 
 
 
 ### Task: Update the Cluster Name
 
-Update **cluster_name** in `terraform.tfvars` and run the above terraform commands.
+Update **cluster_name** in `terraform.tfvars` and run the above terraform commands. You will get an error.
 
+```
+root@763b492af032:~/Desktop# terraform apply
+cockroach_cluster.example: Refreshing state... [id=60f9e362-ee83-4cbd-ab14-10535797e06d]
+\u2577
+\u2502 Error: Cannot update cluster name
+\u2502 
+\u2502   with cockroach_cluster.example,
+\u2502   on main.tf line 51, in resource "cockroach_cluster" "example":
+\u2502   51: resource "cockroach_cluster" "example" {
+\u2502 
+\u2502 To prevent accidental deletion of data, renaming clusters isn't allowed.
+\u2502 Please explicitly destroy this cluster before changing its name.
+\u2575
+```
 

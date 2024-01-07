@@ -45,9 +45,9 @@ with Alpine as the notable exception.
     2.  Copy the library files to the directory:
 
         ```
-        cp -i cockroach-v23.1.13.linux-amd64/lib/libgeos.so /usr/local/lib/cockroach/
+        cp -i lib/libgeos.so /usr/local/lib/cockroach/
 
-        cp -i cockroach-v23.1.13.linux-amd64/lib/libgeos_c.so /usr/local/lib/cockroach/
+        cp -i lib/libgeos_c.so /usr/local/lib/cockroach/
         ```
 
         If you get a permissions error, prefix the command with `sudo`.
